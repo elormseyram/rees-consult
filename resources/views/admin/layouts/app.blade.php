@@ -47,6 +47,7 @@
             position: sticky;
             top: 0;
             overflow-y: auto;
+            overscroll-behavior: contain;
         }
 
         .admin-sidebar .sidebar-brand {
@@ -206,12 +207,22 @@
 
         /* Mobile sidebar toggle */
         @media (max-width: 767.98px) {
+            body.admin-body.sidebar-open {
+                overflow: hidden;
+            }
+
             .admin-sidebar {
                 position: fixed;
+                inset: 0 auto 0 0;
                 z-index: 1050;
                 width: 260px;
+                height: 100dvh;
+                min-height: 100dvh;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+            }
+            .admin-sidebar > .position-sticky {
+                position: static !important;
             }
             .admin-sidebar.show {
                 transform: translateX(0);
@@ -486,7 +497,8 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 admin-main">
                 {{-- Mobile Toggle --}}
                 <div class="admin-topbar d-md-none">
-                    <button class="btn btn-sm btn-dark me-auto" onclick="toggleSidebar()">
+                    <button class="btn btn-sm btn-dark me-auto" type="button" onclick="toggleSidebar()"
+                        aria-controls="adminSidebar" aria-expanded="false">
                         <i class="bi bi-list"></i> Menu
                     </button>
                     <span class="text-muted small">{{ auth()->user()->name ?? 'Admin' }}</span>
@@ -579,8 +591,13 @@
 
         // Mobile Sidebar Toggle
         function toggleSidebar() {
-            document.getElementById('adminSidebar').classList.toggle('show');
-            document.getElementById('sidebarBackdrop').classList.toggle('show');
+            const sidebar = document.getElementById('adminSidebar');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const isOpen = sidebar.classList.toggle('show');
+
+            backdrop.classList.toggle('show', isOpen);
+            document.body.classList.toggle('sidebar-open', isOpen);
+            document.querySelector('.admin-topbar button')?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
     </script>
 
