@@ -31,9 +31,8 @@
 
 @section('content')
 @php
-    use App\Helpers\HeroImageHelper;
-    $heroImage = HeroImageHelper::getHeroImageData('services');
-    $imageUrl = $heroImage ? HeroImageHelper::getHeroImageUrl('services') : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600';
+    $heroImage = \App\Helpers\HeroImageHelper::getHeroImageData('services');
+    $imageUrl = $heroImage ? \App\Helpers\HeroImageHelper::getHeroImageUrl('services') : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600';
     $overlayOpacity = $heroImage ? $heroImage->overlay_opacity : 0.9;
 @endphp
 
