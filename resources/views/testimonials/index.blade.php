@@ -9,7 +9,7 @@
 @push('styles')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "Rees Consult",
   "url": "{{ url('/') }}",
@@ -530,9 +530,8 @@
             <div class="tp-section-divider"></div>
         </div>
 
-        @if($testimonials->isNotEmpty())
         <div class="tp-grid" id="tp-grid">
-            @foreach($testimonials as $i => $testimonial)
+          @forelse($testimonials as $i => $testimonial)
             <div class="tp-card{{ $testimonial->is_short ? ' is-short' : '' }}"
                  style="transition-delay: {{ ($i % 9) * 60 }}ms;">
 
@@ -621,7 +620,13 @@
                     </div>
                 @endif
             </div>
-            @endforeach
+            @empty
+            <div class="tp-empty">
+              <i class="bi bi-chat-heart"></i>
+              <h3>No stories here yet</h3>
+              <p class="text-muted">Try a different filter above, or check back soon.</p>
+            </div>
+            @endforelse
         </div>
 
         {{-- Pagination --}}
@@ -629,13 +634,6 @@
             {{ $testimonials->links() }}
         </div>
 
-        @else
-        <div class="tp-empty">
-            <i class="bi bi-chat-heart"></i>
-            <h3>No stories here yet</h3>
-            <p class="text-muted">Try a different filter above, or check back soon.</p>
-        </div>
-        @endif
     </div>
 </section>
 
@@ -662,8 +660,6 @@
     </div>
 </section>
 
-{{-- Showcase modal stop iframe on close --}}
-@if(isset($showcaseVideo) && $showcaseVideo)
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -680,23 +676,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 @endpush
-@else
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const cards = document.querySelectorAll('#tp-grid .tp-card');
-    if ('IntersectionObserver' in window) {
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
-        }, { threshold: .12 });
-        cards.forEach(c => obs.observe(c));
-    } else {
-        cards.forEach(c => c.classList.add('in-view'));
-    }
-});
-</script>
-@endpush
-@endif
 
 </div>{{-- .tp-page --}}
 @endsection
