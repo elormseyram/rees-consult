@@ -64,12 +64,18 @@ Route::post('/forms/{slug}', [App\Http\Controllers\CustomFormResponseController:
 Route::get('/sitemap.xml', function () {
     $services     = \App\Models\Service::active()->ordered()->get(['slug', 'updated_at']);
     $posts        = \App\Models\Post::whereNotNull('published_at')->where('published_at', '<=', now())->latest()->get(['slug', 'updated_at', 'published_at']);
-    $scholarships = \App\Models\Scholarship::latest()->get(['id', 'updated_at']);
+    $events       = \App\Models\Event::where('is_active', true)->where('end_time', '>=', now())->orderBy('start_time')->get(['slug', 'updated_at']);
+    $scholarships = \App\Models\Scholarship::active()->ordered()->get(['id', 'updated_at']);
 
-    $content = view('sitemap', compact('services', 'posts', 'scholarships'))->render();
+    $content = view('sitemap', compact('services', 'posts', 'events', 'scholarships'))->render();
 
     return response($content, 200)->header('Content-Type', 'application/xml');
 })->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    return response(file_get_contents(public_path('robots.txt')), 200)
+        ->header('Content-Type', 'text/plain');
+})->name('robots');
 
 // Authentication Routes (already included by Laravel UI - public registration disabled)
 Auth::routes(['register' => false]);

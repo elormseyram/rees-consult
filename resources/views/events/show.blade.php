@@ -1,5 +1,43 @@
 @extends('layouts.app')
 
+@section('title', $event->title . ' | Rees Consult Events')
+@section('description', Str::limit(strip_tags($event->description), 155, '...'))
+@section('og_title', $event->title . ' | Rees Consult Events')
+@section('og_description', Str::limit(strip_tags($event->description), 200, '...'))
+@section('og_image', $event->image ? asset('storage/' . $event->image) : asset('reesconsult-logo.png'))
+@section('canonical', route('events.show', $event->slug))
+
+@push('styles')
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Event',
+    'name' => $event->title,
+    'description' => strip_tags($event->description),
+    'startDate' => $event->start_time?->toIso8601String(),
+    'endDate' => $event->end_time?->toIso8601String(),
+    'eventStatus' => 'https://schema.org/EventScheduled',
+    'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+    'location' => [
+        '@type' => 'Place',
+        'name' => $event->location,
+        'address' => [
+            '@type' => 'PostalAddress',
+            'addressLocality' => 'Accra',
+            'addressCountry' => 'GH',
+        ],
+    ],
+    'image' => [$event->image ? asset('storage/' . $event->image) : asset('reesconsult-logo.png')],
+    'organizer' => [
+        '@type' => 'Organization',
+        'name' => 'Rees Consult',
+        'url' => url('/'),
+    ],
+    'url' => route('events.show', $event->slug),
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @section('content')
 @php
     use App\Helpers\HeroImageHelper;

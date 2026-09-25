@@ -77,6 +77,16 @@
     </url>
     @endforeach
 
+    {{-- Current public events --}}
+    @foreach($events as $event)
+    <url>
+        <loc>{{ route('events.show', $event->slug) }}</loc>
+        <lastmod>{{ $event->updated_at->toDateString() }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    @endforeach
+
     {{-- Dynamic scholarship pages --}}
     @foreach($scholarships as $scholarship)
     <url>

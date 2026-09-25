@@ -36,8 +36,8 @@
                     <div class="hero-content">
                         <span class="hero-badge"><i class="bi bi-patch-check-fill"></i> British Council Registration Partner</span>
                         <h1>
-                            Travel <span class="highlight">Abroad</span><br>
-                            With Ease
+                            IELTS, <span class="highlight">Study Abroad</span><br>
+                            &amp; Work Abroad Experts in Ghana
                         </h1>
                         <p class="hero-lead">
                             Expert one-on-one guidance for your exams, school admissions and overseas job placement —

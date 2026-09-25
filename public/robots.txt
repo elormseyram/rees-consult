@@ -1,2 +1,10 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /login
+Disallow: /logout
+Disallow: /password/
+Disallow: /register
+Disallow: /verify-email
+
+Sitemap: https://www.reesconsult.com/sitemap.xml

@@ -1,5 +1,32 @@
 @extends('layouts.app')
 
+@section('title', $scholarship->name . ' Scholarship | Rees Consult Ghana')
+@section('description', Str::limit(strip_tags($scholarship->description ?: 'Scholarship guidance and application support for students in Ghana.'), 155, '...'))
+@section('og_title', $scholarship->name . ' Scholarship | Rees Consult Ghana')
+@section('og_description', Str::limit(strip_tags($scholarship->description ?: 'Get scholarship guidance and application support from Rees Consult.'), 200, '...'))
+@section('canonical', route('scholarships.show', $scholarship->id))
+
+@push('styles')
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Scholarship',
+    'name' => $scholarship->name,
+    'description' => strip_tags($scholarship->description ?: 'Scholarship opportunity for international students.'),
+    'url' => route('scholarships.show', $scholarship->id),
+    'provider' => [
+        '@type' => 'Organization',
+        'name' => 'Rees Consult',
+        'url' => url('/'),
+    ],
+    'areaServed' => [
+        '@type' => 'Country',
+        'name' => $scholarship->country,
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @section('content')
 @php
     use App\Helpers\HeroImageHelper;

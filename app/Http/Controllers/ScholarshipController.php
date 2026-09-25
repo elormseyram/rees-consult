@@ -32,6 +32,8 @@ class ScholarshipController extends Controller
 
     public function show(Scholarship $scholarship)
     {
+        abort_unless($scholarship->is_active, 404);
+
         return view('scholarships.show', compact('scholarship'));
     }
 }

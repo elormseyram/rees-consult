@@ -73,7 +73,7 @@
     <meta name="description" content="@yield('description', 'Rees Consult provides expert IELTS tutoring, test preparation (GRE, SAT, TOEFL), and study abroad consultancy for African students. Professional guidance for international education and career opportunities.')">
     <meta name="keywords" content="@yield('keywords', 'IELTS preparatory, test preparation, study abroad, education consultancy, GRE, SAT, TOEFL, international education, scholarship applications')">
     <meta name="author" content="Rees Consult">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
     <meta name="language" content="English">
 
     <!-- Open Graph Tags -->
@@ -81,7 +81,7 @@
     <meta property="og:title" content="@yield('og_title', 'Rees Consult - IELTS & Study Abroad Consultancy')">
     <meta property="og:description" content="@yield('og_description', 'Expert guidance for IELTS, test preparation, and international education opportunities.')">
     <meta property="og:image" content="@yield('og_image', asset('reesconsult-logo.png'))">
-    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:url" content="@yield('canonical', url()->current())">
     <meta property="og:site_name" content="Rees Consult">
 
     <!-- Twitter Card Tags -->
@@ -91,7 +91,7 @@
     <meta name="twitter:image" content="@yield('twitter_image', asset('reesconsult-logo.png'))">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ request()->url() }}">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
