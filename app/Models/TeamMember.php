@@ -34,4 +34,9 @@ class TeamMember extends Model
     {
         return $query->orderBy('order', 'asc');
     }
+
+    public function scopeVisible($query)
+    {
+        return $query->whereRaw('LOWER(TRIM(name)) NOT IN (?, ?, ?, ?)', ['jake abednego', 'jake', 'abednego', 'samuel appeneng']);
+    }
 }

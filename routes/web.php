@@ -20,7 +20,7 @@ Route::get('/storage/{path}', function (string $path) {
 // Public Routes
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', function () {
-    $teamMembers = \App\Models\TeamMember::active()->ordered()->get();
+    $teamMembers = \App\Models\TeamMember::active()->visible()->ordered()->get();
     $testimonials = \App\Models\Testimonial::active()->ordered()->take(2)->get();
     return view('about', compact('teamMembers', 'testimonials'));
 })->name('about');

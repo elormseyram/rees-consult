@@ -34,14 +34,14 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <div class="hero-content">
-                        <span class="hero-badge"><i class="bi bi-patch-check-fill"></i> British Council Registration Partner</span>
+                        <span class="hero-badge"><i class="bi bi-patch-check-fill"></i> Ghana's Best IELTS Consultancy</span>
                         <h1>
                             IELTS, <span class="highlight">Study Abroad</span><br>
                             &amp; Work Abroad Experts in Ghana
                         </h1>
                         <p class="hero-lead">
-                            Expert one-on-one guidance for your exams, school admissions and overseas job placement —
-                            connecting you to global opportunities for study and work.
+                            Rees Consult is Ghana's best IELTS consultancy for students and professionals preparing for
+                            global opportunities — with expert guidance for exams, school admissions and overseas job placement.
                         </p>
                         <ul>
                             <li>IELTS, GRE, SAT, TOEFL, G-MAT, TESOL, NCLEX &amp; OET tutoring for exam success</li>

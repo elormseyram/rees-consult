@@ -52,11 +52,9 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="text-uppercase mb-2 ls-1" style="color: #F8A706;">About Us</div>
                     <h2 class="display-5 fw-bold mb-4" style="color: #07294D;">Welcome to Ree's Consult</h2>
-                    <p class="lead text-muted mb-4">Providing expert guidance and preparation for individuals taking the
-                        International English Language Testing System (IELTS) exam including GRE, SAT, TOEFL, G-MAT, TESOL, NCLEX, OET.</p>
-                    <p class="text-muted mb-4">We also assist clients with studying and working abroad, including travel
-                        arrangements, visa applications, and career pathways. Ree's Consult aims to empower individuals to
-                        achieve their global aspirations through education and career opportunities.</p>
+                    <p class="lead text-muted mb-4">Rees Consult is Ghana's best IELTS consultancy, helping students and professionals prepare with confidence for study, work and migration abroad.</p>
+                    <p class="text-muted mb-4">We provide expert guidance and preparation for the International English
+                        Language Testing System (IELTS) exam including GRE, SAT, TOEFL, G-MAT, TESOL, NCLEX, and OET. We also assist clients with studying and working abroad, including travel arrangements, visa applications, and career pathways. Ree's Consult aims to empower individuals to achieve their global aspirations through education and career opportunities.</p>
                     <a href="#" class="btn btn-primary px-4 py-2">Explore More</a>
                 </div>
                 <div class="col-lg-6 position-relative">

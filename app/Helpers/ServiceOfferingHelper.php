@@ -11,7 +11,8 @@ class ServiceOfferingHelper
         return ServiceOffering::active()
             ->byCategory($category)
             ->ordered()
-            ->get();
+            ->get()
+            ->unique(fn ($item) => strtolower(trim($item->title)));
     }
 
     public static function getAllByCategory()
@@ -19,7 +20,10 @@ class ServiceOfferingHelper
         return ServiceOffering::active()
             ->ordered()
             ->get()
-            ->groupBy('category');
+            ->groupBy('category')
+            ->map(function ($items) {
+                return $items->unique(fn ($item) => strtolower(trim($item->title)));
+            });
     }
 
     public static function getCategoryLabel($category)
